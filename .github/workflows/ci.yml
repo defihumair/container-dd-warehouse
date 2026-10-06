@@ -51,8 +51,8 @@ jobs:
           exit 1
 
       - name: Deploy database objects
-        run: docker exec sql /opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P "$MSSQL_SA_PASSWORD" -C -b -i /repo/sql/deploy_all.sql
-
+        run: docker exec sql /opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P "$MSSQL_SA_PASSWORD" -C -b -I -i /repo/sql/deploy_all.sql
+        
       - name: Run pipeline (first load)
         run: python pipeline/run_pipeline.py
 

@@ -1,4 +1,10 @@
 :on error exit
+SET QUOTED_IDENTIFIER ON;
+SET ANSI_NULLS ON;
+GO
+:r /repo/sql/00_setup/setup.sql
+
+:r
 :r /repo/sql/00_setup/setup.sql
 :r /repo/sql/01_raw/01_etl_control_tables.sql
 :r /repo/sql/01_raw/02_raw_tables.sql
