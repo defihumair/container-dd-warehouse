@@ -39,7 +39,7 @@ BEGIN
                    ISNULL(dp.port_sk, -1)      AS port_sk,
                    ISNULL(cu.customer_sk, -1)  AS customer_sk,
                    ISNULL(dv.vessel_sk, -1)    AS vessel_sk,
-                   CONVERT(INT, FORMAT(e.event_ts, 'yyyyMMdd')) AS date_key,
+                   CONVERT(INT, CONVERT(CHAR(8), e.event_ts, 112)) AS date_key,
                    e.event_type, e.event_ts, e.booking_ref, e.voyage_no, e.stg_loaded_at
             FROM stg.container_event AS e
             LEFT JOIN dw.dim_container AS dc
