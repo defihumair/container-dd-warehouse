@@ -223,3 +223,4 @@ data/
 *.pbix
 **/.pbi/cache.abf
 **/.pbi/localSettings.json
+graphify-out/

@@ -1,0 +1,3 @@
+docs/*.png
+.pytest_cache/
+powerbi/container_dd_report.Report/StaticResources/
