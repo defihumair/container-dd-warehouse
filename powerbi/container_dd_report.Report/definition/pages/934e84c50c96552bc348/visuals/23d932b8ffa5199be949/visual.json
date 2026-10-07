@@ -1,0 +1,107 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "23d932b8ffa5199be949",
+  "position": {
+    "x": 62.961684501208147,
+    "y": 904.65999309630661,
+    "z": 4003,
+    "height": 596.47911632723515,
+    "width": 854.15809458060062,
+    "tabOrder": 4003
+  },
+  "visual": {
+    "visualType": "barChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "v_dd_exposure"
+                    }
+                  },
+                  "Property": "port_name"
+                }
+              },
+              "queryRef": "v_dd_exposure.port_name",
+              "nativeQueryRef": "port_name",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "v_dd_exposure"
+                    }
+                  },
+                  "Property": "Total D&D USD"
+                }
+              },
+              "queryRef": "v_dd_exposure.Total D&D USD",
+              "nativeQueryRef": "Total D&D USD"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "v_dd_exposure"
+                  }
+                },
+                "Property": "Total D&D USD"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "1346ca412b9e0d87516a",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "v_dd_exposure"
+              }
+            },
+            "Property": "Total D&D USD"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "8408e2a588803fe902e2",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "v_dd_exposure"
+              }
+            },
+            "Property": "port_name"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
+  }
+}

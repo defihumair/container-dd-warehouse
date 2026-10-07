@@ -1,0 +1,122 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "c0197f22e9ce7a087eb5",
+  "position": {
+    "x": 65,
+    "y": 863,
+    "z": 3002,
+    "height": 547,
+    "width": 1162,
+    "tabOrder": 3002
+  },
+  "visual": {
+    "visualType": "barChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "v_quarantine_summary"
+                    }
+                  },
+                  "Property": "issue"
+                }
+              },
+              "queryRef": "v_quarantine_summary.issue",
+              "nativeQueryRef": "issue",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "v_quarantine_summary"
+                        }
+                      },
+                      "Property": "cycles"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(v_quarantine_summary.cycles)",
+              "nativeQueryRef": "Sum of cycles"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "v_quarantine_summary"
+                      }
+                    },
+                    "Property": "cycles"
+                  }
+                },
+                "Function": 0
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "dcdf9cfa03fc30dc6d2a",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "v_quarantine_summary"
+              }
+            },
+            "Property": "issue"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "8a81718e8f23267c22b0",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "v_quarantine_summary"
+                  }
+                },
+                "Property": "cycles"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

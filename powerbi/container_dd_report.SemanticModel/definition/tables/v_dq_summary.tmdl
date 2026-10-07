@@ -1,0 +1,67 @@
+table v_dq_summary
+	lineageTag: 40823b60-1ba6-41c9-bcf3-30bd45d7cc3d
+
+	column check_name
+		dataType: string
+		lineageTag: 082d6497-495a-4852-aa64-80c2df6a0042
+		summarizeBy: none
+		sourceColumn: check_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column severity
+		dataType: string
+		lineageTag: 68b87b1b-160a-4183-9bd8-743c478837bc
+		summarizeBy: none
+		sourceColumn: severity
+
+		annotation SummarizationSetBy = Automatic
+
+	column failed_rows
+		dataType: int64
+		formatString: 0
+		lineageTag: c9d6e7ad-7fd2-479e-af71-1cb0bf6f9e95
+		summarizeBy: sum
+		sourceColumn: failed_rows
+
+		annotation SummarizationSetBy = Automatic
+
+	column threshold
+		dataType: int64
+		formatString: 0
+		lineageTag: f62cf024-6a3e-4899-83de-c718d960c0aa
+		summarizeBy: sum
+		sourceColumn: threshold
+
+		annotation SummarizationSetBy = Automatic
+
+	column status
+		dataType: string
+		lineageTag: 42a55d9f-70cd-4f19-b33f-5f4bddf2d2f6
+		summarizeBy: none
+		sourceColumn: status
+
+		annotation SummarizationSetBy = Automatic
+
+	column run_ts
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 906357cf-2d1c-4989-8bba-aa5bb03cd4c7
+		summarizeBy: none
+		sourceColumn: run_ts
+
+		annotation SummarizationSetBy = Automatic
+
+	partition v_dq_summary = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("localhost,1433", "dd_warehouse"),
+				    mart_v_dq_summary = Source{[Schema="mart",Item="v_dq_summary"]}[Data]
+				in
+				    mart_v_dq_summary
+
+	changedProperty = Name
+
+	annotation PBI_ResultType = Table
+

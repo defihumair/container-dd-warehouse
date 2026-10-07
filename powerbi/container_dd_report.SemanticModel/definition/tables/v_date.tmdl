@@ -1,0 +1,105 @@
+table v_date
+	lineageTag: a4f32d85-cd63-4c14-b004-2db088019191
+
+	column date_key
+		dataType: int64
+		formatString: 0
+		lineageTag: 93f7b060-b8dc-48b4-81f2-ba242dc14338
+		summarizeBy: none
+		sourceColumn: date_key
+
+		annotation SummarizationSetBy = User
+
+	column full_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 802a922e-6a21-40a6-a776-5cd0e56cda9b
+		summarizeBy: none
+		sourceColumn: full_date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column day_of_month
+		dataType: int64
+		formatString: 0
+		lineageTag: 980122c3-5e26-4f35-a1b5-a4fff44fec17
+		summarizeBy: none
+		sourceColumn: day_of_month
+
+		annotation SummarizationSetBy = User
+
+	column day_name
+		dataType: string
+		lineageTag: 248cedbe-3e12-4fb4-bdc3-6d05101bf120
+		summarizeBy: none
+		sourceColumn: day_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_weekend
+		dataType: int64
+		formatString: 0
+		lineageTag: 7125f9b9-08c5-4600-8fbf-72bf7d87d02a
+		summarizeBy: sum
+		sourceColumn: is_weekend
+
+		annotation SummarizationSetBy = Automatic
+
+	column month_no
+		dataType: int64
+		formatString: 0
+		lineageTag: 1cb4be81-7959-4a22-902f-2ba2c90e995c
+		summarizeBy: none
+		sourceColumn: month_no
+
+		annotation SummarizationSetBy = User
+
+	column month_name
+		dataType: string
+		lineageTag: 971e7644-8d9c-4703-980a-dd79b0a0b3ff
+		summarizeBy: none
+		sourceColumn: month_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column year_month
+		dataType: string
+		lineageTag: 06f6a9db-b117-43eb-9a77-3cf799541f57
+		summarizeBy: none
+		sourceColumn: year_month
+
+		annotation SummarizationSetBy = Automatic
+
+	column quarter_no
+		dataType: int64
+		formatString: 0
+		lineageTag: 33780647-1d4a-4b6e-8d2f-648b6445a55e
+		summarizeBy: none
+		sourceColumn: quarter_no
+
+		annotation SummarizationSetBy = User
+
+	column year_no
+		dataType: int64
+		formatString: 0
+		lineageTag: 962b78bc-de84-4a5c-aa31-62c3ee23d117
+		summarizeBy: none
+		sourceColumn: year_no
+
+		annotation SummarizationSetBy = User
+
+	partition v_date = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("localhost,1433", "dd_warehouse"),
+				    mart_v_date = Source{[Schema="mart",Item="v_date"]}[Data]
+				in
+				    mart_v_date
+
+	changedProperty = Name
+
+	annotation PBI_ResultType = Table
+

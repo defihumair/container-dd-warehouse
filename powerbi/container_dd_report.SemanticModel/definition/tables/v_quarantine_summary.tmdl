@@ -1,0 +1,33 @@
+table v_quarantine_summary
+	lineageTag: 7c1d82e6-1a2b-424a-b430-e36d6b8844a1
+
+	column issue
+		dataType: string
+		lineageTag: 3d39d588-0c98-439d-a9b1-723dbe7bff7f
+		summarizeBy: none
+		sourceColumn: issue
+
+		annotation SummarizationSetBy = Automatic
+
+	column cycles
+		dataType: int64
+		formatString: 0
+		lineageTag: b70cc5e2-fa38-4a38-8c0c-d6a8de54e7ff
+		summarizeBy: sum
+		sourceColumn: cycles
+
+		annotation SummarizationSetBy = Automatic
+
+	partition v_quarantine_summary = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("localhost,1433", "dd_warehouse"),
+				    mart_v_quarantine_summary = Source{[Schema="mart",Item="v_quarantine_summary"]}[Data]
+				in
+				    mart_v_quarantine_summary
+
+	changedProperty = Name
+
+	annotation PBI_ResultType = Table
+

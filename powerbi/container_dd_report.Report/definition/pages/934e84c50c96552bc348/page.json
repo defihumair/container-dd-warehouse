@@ -1,0 +1,8 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "934e84c50c96552bc348",
+  "displayName": "D&D Exposure",
+  "displayOption": "FitToPage",
+  "height": 1500,
+  "width": 1920
+}

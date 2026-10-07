@@ -1,0 +1,89 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "85d3dbe2ba9f9f1f2f8a",
+  "position": {
+    "x": 63.013915759539408,
+    "y": 303.61250320505349,
+    "z": 4001,
+    "height": 612.95354420642877,
+    "width": 853.55213165194289,
+    "tabOrder": 4001
+  },
+  "visual": {
+    "visualType": "clusteredColumnChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "v_date"
+                    }
+                  },
+                  "Property": "year_month"
+                }
+              },
+              "queryRef": "v_date.year_month",
+              "nativeQueryRef": "year_month",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "v_dd_exposure"
+                    }
+                  },
+                  "Property": "Demurrage USD"
+                }
+              },
+              "queryRef": "v_dd_exposure.Demurrage USD",
+              "nativeQueryRef": "Demurrage USD"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "v_dd_exposure"
+                    }
+                  },
+                  "Property": "Detention USD"
+                }
+              },
+              "queryRef": "v_dd_exposure.Detention USD",
+              "nativeQueryRef": "Detention USD"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "v_dd_exposure"
+                  }
+                },
+                "Property": "Demurrage USD"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

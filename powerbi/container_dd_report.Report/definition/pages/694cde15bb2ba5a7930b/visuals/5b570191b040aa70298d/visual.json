@@ -1,0 +1,365 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "5b570191b040aa70298d",
+  "position": {
+    "x": 64.977448754238068,
+    "y": 305.7762294317086,
+    "z": 3001,
+    "height": 546.57501010917906,
+    "width": 1161.9496718404926,
+    "tabOrder": 3001
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "v_dq_summary"
+                    }
+                  },
+                  "Property": "check_name"
+                }
+              },
+              "queryRef": "v_dq_summary.check_name",
+              "nativeQueryRef": "check_name"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "v_dq_summary"
+                    }
+                  },
+                  "Property": "failed_rows"
+                }
+              },
+              "queryRef": "Sum(v_dq_summary.failed_rows)",
+              "nativeQueryRef": "failed_rows"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "v_dq_summary"
+                    }
+                  },
+                  "Property": "run_ts"
+                }
+              },
+              "queryRef": "v_dq_summary.run_ts.Variation.Date Hierarchy.Year",
+              "nativeQueryRef": "run_ts Year"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "v_dq_summary"
+                    }
+                  },
+                  "Property": "severity"
+                }
+              },
+              "queryRef": "v_dq_summary.severity",
+              "nativeQueryRef": "severity"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "v_dq_summary"
+                    }
+                  },
+                  "Property": "status"
+                }
+              },
+              "queryRef": "v_dq_summary.status",
+              "nativeQueryRef": "status"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "v_dq_summary"
+                    }
+                  },
+                  "Property": "threshold"
+                }
+              },
+              "queryRef": "Sum(v_dq_summary.threshold)",
+              "nativeQueryRef": "threshold"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "v_dq_summary"
+                      }
+                    },
+                    "Property": "failed_rows"
+                  }
+                },
+                "Function": 0
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "values": [
+        {
+          "properties": {
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Conditional": {
+                      "Cases": [
+                        {
+                          "Condition": {
+                            "Comparison": {
+                              "ComparisonKind": 0,
+                              "Left": {
+                                "Aggregation": {
+                                  "Expression": {
+                                    "Column": {
+                                      "Expression": {
+                                        "SourceRef": {
+                                          "Entity": "v_dq_summary"
+                                        }
+                                      },
+                                      "Property": "status"
+                                    }
+                                  },
+                                  "Function": 3
+                                }
+                              },
+                              "Right": {
+                                "Literal": {
+                                  "Value": "'pass'"
+                                }
+                              }
+                            },
+                            "Annotations": {
+                              "PowerBI.SQExprEvaluationKind": 1,
+                              "PowerBI.SQExprTextOperatorOption": 2
+                            }
+                          },
+                          "Value": {
+                            "Literal": {
+                              "Value": "'#137618'"
+                            }
+                          }
+                        },
+                        {
+                          "Condition": {
+                            "Comparison": {
+                              "ComparisonKind": 0,
+                              "Left": {
+                                "Aggregation": {
+                                  "Expression": {
+                                    "Column": {
+                                      "Expression": {
+                                        "SourceRef": {
+                                          "Entity": "v_dq_summary"
+                                        }
+                                      },
+                                      "Property": "status"
+                                    }
+                                  },
+                                  "Function": 3
+                                }
+                              },
+                              "Right": {
+                                "Literal": {
+                                  "Value": "'fail'"
+                                }
+                              }
+                            },
+                            "Annotations": {
+                              "PowerBI.SQExprEvaluationKind": 1,
+                              "PowerBI.SQExprTextOperatorOption": 2
+                            }
+                          },
+                          "Value": {
+                            "Literal": {
+                              "Value": "'#D64550'"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ],
+            "metadata": "v_dq_summary.status"
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "a94de25aaf62064b9591",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "v_dq_summary"
+              }
+            },
+            "Property": "check_name"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "f9c1cfb155b31920f195",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "v_dq_summary"
+              }
+            },
+            "Property": "run_ts"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "a4d603c7c8904bf8ef0b",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "v_dq_summary"
+              }
+            },
+            "Property": "run_ts"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
+        "name": "0f217d8707b77d7fcc3f",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "v_dq_summary"
+              }
+            },
+            "Property": "run_ts"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
+        "name": "2f2d647960afac93009d",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "v_dq_summary"
+              }
+            },
+            "Property": "run_ts"
+          }
+        },
+        "type": "Advanced",
+        "howCreated": "User"
+      },
+      {
+        "name": "dec73e37ad2967d7783b",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "v_dq_summary"
+              }
+            },
+            "Property": "severity"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "25b38121fa054c893d28",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "v_dq_summary"
+              }
+            },
+            "Property": "status"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "42c058a4dd55d30f7f6a",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "v_dq_summary"
+              }
+            },
+            "Property": "failed_rows"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "676bb5bffd6d8fc26998",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "v_dq_summary"
+              }
+            },
+            "Property": "threshold"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

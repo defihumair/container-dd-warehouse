@@ -1,0 +1,276 @@
+table v_dd_exposure
+	lineageTag: 3d25e08c-8a4c-4cb3-99e6-f2e03349b1ce
+
+	measure 'Total D&D USD' = SUM ( v_dd_exposure[charge_usd] )
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 0ee522b5-5d67-4f2f-a7f0-da831c05e058
+
+	measure 'Demurrage USD' = ```
+			CALCULATE ( [Total D&D USD], v_dd_exposure[charge_type] = "DEMURRAGE" )
+			
+			```
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 4b51e843-f1d4-426f-882e-4c7136fc36cc
+
+	measure 'Detention USD' = ```
+			CALCULATE ( [Total D&D USD], v_dd_exposure[charge_type] = "DETENTION" )
+			
+			```
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 4cbcc882-b383-471b-97b7-4e4e392c3678
+
+	measure 'Open Exposure USD' = ```
+			CALCULATE ( [Total D&D USD], v_dd_exposure[is_open] = 1 )
+			
+			```
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 6a4da46d-4684-47ad-8143-45f9b695bc64
+
+	measure 'Charge Cycles' = ```
+			COUNTROWS ( v_dd_exposure )
+			
+			```
+		formatString: 0
+		lineageTag: 3ab71bdf-ccb5-44b0-afef-c5543c30074b
+
+	measure 'Cycles Over Free Time' = ```
+			CALCULATE ( [Charge Cycles], v_dd_exposure[over_free_time] = 1 )
+			
+			```
+		formatString: 0
+		lineageTag: c0b77e9e-bf45-460a-817a-45db8d07587c
+
+	measure '% Over Free Time' = ```
+			DIVIDE ( [Cycles Over Free Time], [Charge Cycles] )
+			
+			```
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 47af753a-6685-4199-a990-55f90a393e64
+
+	measure 'Avg Detention Days (Closed)' =
+			
+			CALCULATE (
+			    AVERAGE ( v_dd_exposure[charge_days] ),
+			    v_dd_exposure[charge_type] = "DETENTION",
+			    v_dd_exposure[is_open] = 0
+			)
+		formatString: 0.00
+		lineageTag: c8eb53a8-1a19-4508-9da4-f30d04204a77
+
+	measure 'Previous Month USD' = ```
+			CALCULATE ( [Total D&D USD], DATEADD ( v_date[full_date], -1, MONTH ) )
+			
+			```
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: d1791b5f-0ee6-42af-94b7-966991c48a4f
+
+	measure 'MoM Change %' = ```
+			DIVIDE ( [Total D&D USD] - [Previous Month USD], [Previous Month USD] )
+			
+			```
+		lineageTag: b78cd307-49f9-47a6-bc6a-4b235e25bd44
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Error Checks Failed' =
+			
+			COALESCE ( CALCULATE ( COUNTROWS ( v_dq_summary ), v_dq_summary[severity] = "error", v_dq_summary[status] = "fail" ), 0 )
+		formatString: 0
+		lineageTag: 36c82416-c5af-4306-8d5f-043fc1d34dd7
+
+	measure 'Warning Checks Failed' =
+			
+			COALESCE ( CALCULATE ( COUNTROWS ( v_dq_summary ), v_dq_summary[severity] = "warning", v_dq_summary[status] = "fail" ), 0 )
+		formatString: 0
+		lineageTag: 5e7ff15f-3881-4c49-8d1a-488590756399
+
+	measure 'Quarantined Cycles' = ```
+			SUM ( v_quarantine_summary[cycles] )
+			
+			```
+		formatString: 0.0
+		lineageTag: 6c94c85f-6d91-46e3-be6a-69f24b7a4e84
+
+	measure 'Detention Cycles (Closed)' =
+			
+			CALCULATE ( [Charge Cycles], v_dd_exposure[charge_type] = "DETENTION", v_dd_exposure[is_open] = 0 )
+		formatString: 0
+		lineageTag: 0c3039ca-9695-4957-9774-27ac3336b640
+
+	column container_no
+		dataType: string
+		lineageTag: 7be206bd-bcdd-410f-bf78-f3a9ff5e6d13
+		summarizeBy: none
+		sourceColumn: container_no
+
+		annotation SummarizationSetBy = Automatic
+
+	column booking_ref
+		dataType: string
+		lineageTag: 8e9f9c87-a0da-4c85-a7eb-20c2d36a3259
+		summarizeBy: none
+		sourceColumn: booking_ref
+
+		annotation SummarizationSetBy = Automatic
+
+	column cycle_no
+		dataType: int64
+		formatString: 0
+		lineageTag: f983e118-8266-4254-a2bb-6b3da712a7ac
+		summarizeBy: none
+		sourceColumn: cycle_no
+
+		annotation SummarizationSetBy = User
+
+	column charge_type
+		dataType: string
+		lineageTag: 842d0640-a002-4ad9-b1df-67cec04251f5
+		summarizeBy: none
+		sourceColumn: charge_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column container_type
+		dataType: string
+		lineageTag: 629e52ab-aea9-463c-9daa-695d935d8668
+		summarizeBy: none
+		sourceColumn: container_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column owner_type
+		dataType: string
+		lineageTag: e8d77b59-80a9-426b-af5a-62c34913c0eb
+		summarizeBy: none
+		sourceColumn: owner_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_id
+		dataType: string
+		lineageTag: 2a54ad71-7889-4104-8c07-99b0a0ac23b4
+		summarizeBy: none
+		sourceColumn: customer_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_name
+		dataType: string
+		lineageTag: 084c518e-d5eb-4a46-b197-2c6cce6b51f2
+		summarizeBy: none
+		sourceColumn: customer_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column segment
+		dataType: string
+		lineageTag: 18f8d60d-420b-469b-a226-a8e02e2b67fd
+		summarizeBy: none
+		sourceColumn: segment
+
+		annotation SummarizationSetBy = Automatic
+
+	column port_code
+		dataType: string
+		lineageTag: a6af7722-4600-4fd1-9c13-30cb05af990b
+		summarizeBy: none
+		sourceColumn: port_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column port_name
+		dataType: string
+		lineageTag: ea8216c4-9573-4fed-b133-4985a8777fd1
+		summarizeBy: none
+		sourceColumn: port_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column country
+		dataType: string
+		lineageTag: c570d043-70b6-4195-b124-850c53f54b2a
+		summarizeBy: none
+		sourceColumn: country
+
+		annotation SummarizationSetBy = Automatic
+
+	column start_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 964c3c0a-0913-4c77-b449-c576e41846c6
+		summarizeBy: none
+		sourceColumn: start_date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column year_month
+		dataType: string
+		lineageTag: 45198933-b59e-48fe-b9e7-cce7c2d464a9
+		summarizeBy: none
+		sourceColumn: year_month
+
+		annotation SummarizationSetBy = Automatic
+
+	column charge_days
+		dataType: int64
+		formatString: 0
+		lineageTag: b030d6d5-4664-470f-9306-a2f765c05335
+		summarizeBy: sum
+		sourceColumn: charge_days
+
+		annotation SummarizationSetBy = Automatic
+
+	column charge_usd
+		dataType: double
+		lineageTag: b80f4a05-345f-491c-8976-555199f9e4e7
+		summarizeBy: sum
+		sourceColumn: charge_usd
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column is_open
+		dataType: int64
+		formatString: 0
+		lineageTag: 70b912c8-fc9b-4a41-bad8-ff534dba2efd
+		summarizeBy: none
+		sourceColumn: is_open
+
+		annotation SummarizationSetBy = User
+
+	column over_free_time
+		dataType: int64
+		formatString: 0
+		lineageTag: b723992e-62a4-4ef1-b7df-f839576d68c6
+		summarizeBy: none
+		sourceColumn: over_free_time
+
+		annotation SummarizationSetBy = User
+
+	column as_of_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 640f2160-becc-4de1-9326-367dd3fdc775
+		summarizeBy: none
+		sourceColumn: as_of_date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition v_dd_exposure = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("localhost,1433", "dd_warehouse"),
+				    mart_v_dd_exposure = Source{[Schema="mart",Item="v_dd_exposure"]}[Data]
+				in
+				    mart_v_dd_exposure
+
+	changedProperty = Name
+
+	annotation PBI_ResultType = Table
+

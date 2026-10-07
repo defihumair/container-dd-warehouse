@@ -1,0 +1,74 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "7a9e3d9486e6368cecf5",
+  "position": {
+    "x": 677.60027614773912,
+    "y": 59.647911632723513,
+    "z": 3000,
+    "height": 167.01415257162583,
+    "width": 281.538142906455,
+    "tabOrder": 3000
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "v_dd_exposure"
+                    }
+                  },
+                  "Property": "Quarantined Cycles"
+                }
+              },
+              "queryRef": "v_dd_exposure.Quarantined Cycles",
+              "nativeQueryRef": "Quarantined Cycles"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "v_dd_exposure"
+                  }
+                },
+                "Property": "Quarantined Cycles"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "9fe7efbb1777c92be2e7",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "v_dd_exposure"
+              }
+            },
+            "Property": "Quarantined Cycles"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

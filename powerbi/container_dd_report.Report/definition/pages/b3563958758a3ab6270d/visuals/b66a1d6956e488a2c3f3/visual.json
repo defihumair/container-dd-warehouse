@@ -1,0 +1,143 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "b66a1d6956e488a2c3f3",
+  "position": {
+    "x": 156.71031758375065,
+    "y": 152.8881147158543,
+    "z": 7001,
+    "height": 596,
+    "width": 854,
+    "tabOrder": 7001
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "v_dd_exposure"
+                    }
+                  },
+                  "Property": "customer_name"
+                }
+              },
+              "queryRef": "v_dd_exposure.customer_name",
+              "nativeQueryRef": "customer_name"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "v_dd_exposure"
+                    }
+                  },
+                  "Property": "Avg Detention Days (Closed)"
+                }
+              },
+              "queryRef": "v_dd_exposure.Avg Detention Days (Closed)",
+              "nativeQueryRef": "Avg Detention Days (Closed)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "v_dd_exposure"
+                    }
+                  },
+                  "Property": "Detention USD"
+                }
+              },
+              "queryRef": "v_dd_exposure.Detention USD",
+              "nativeQueryRef": "Detention USD"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "v_dd_exposure"
+                    }
+                  },
+                  "Property": "Detention Cycles (Closed)"
+                }
+              },
+              "queryRef": "v_dd_exposure.Detention Cycles (Closed)",
+              "nativeQueryRef": "Detention Cycles (Closed)"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "v_dd_exposure"
+                  }
+                },
+                "Property": "Avg Detention Days (Closed)"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "b89546b5bbe7b47d2140",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "v_dd_exposure"
+              }
+            },
+            "Property": "customer_name"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "0adc12943bd591427cc9",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "v_dd_exposure"
+              }
+            },
+            "Property": "Avg Detention Days (Closed)"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "55c75d1192f60daef755",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "v_dd_exposure"
+              }
+            },
+            "Property": "Detention USD"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

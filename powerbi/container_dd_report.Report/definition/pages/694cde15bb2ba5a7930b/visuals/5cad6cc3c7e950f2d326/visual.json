@@ -1,0 +1,74 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "5cad6cc3c7e950f2d326",
+  "position": {
+    "x": 64.4197445633414,
+    "y": 59.647911632723513,
+    "z": 0,
+    "height": 167.01415257162583,
+    "width": 281.538142906455,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "v_dd_exposure"
+                    }
+                  },
+                  "Property": "Error Checks Failed"
+                }
+              },
+              "queryRef": "v_dd_exposure.Error Checks Failed",
+              "nativeQueryRef": "Error Checks Failed"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "v_dd_exposure"
+                  }
+                },
+                "Property": "Error Checks Failed"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "d8f7d4d3c462711f3e4b",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "v_dd_exposure"
+              }
+            },
+            "Property": "Error Checks Failed"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

@@ -1,0 +1,122 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "721ae0fb16049d8ea475",
+  "position": {
+    "x": 229.33217207378144,
+    "y": 775.90718218296047,
+    "z": 7002,
+    "height": 676.52990761765523,
+    "width": 1043.4613829357056,
+    "tabOrder": 7002
+  },
+  "visual": {
+    "visualType": "scatterChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "v_dd_exposure"
+                    }
+                  },
+                  "Property": "customer_name"
+                }
+              },
+              "queryRef": "v_dd_exposure.customer_name",
+              "nativeQueryRef": "customer_name",
+              "active": true
+            }
+          ]
+        },
+        "X": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "v_dd_exposure"
+                    }
+                  },
+                  "Property": "Charge Cycles"
+                }
+              },
+              "queryRef": "v_dd_exposure.Charge Cycles",
+              "nativeQueryRef": "Charge Cycles",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "v_dd_exposure"
+                    }
+                  },
+                  "Property": "Avg Detention Days (Closed)"
+                }
+              },
+              "queryRef": "v_dd_exposure.Avg Detention Days (Closed)",
+              "nativeQueryRef": "Avg Detention Days (Closed)"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "9873ff55a39dd6dfc71f",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "v_dd_exposure"
+              }
+            },
+            "Property": "Charge Cycles"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "9d90782df5fce79dda86",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "v_dd_exposure"
+              }
+            },
+            "Property": "Avg Detention Days (Closed)"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "c22080b653700a5a94d1",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "v_dd_exposure"
+              }
+            },
+            "Property": "customer_name"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
+  }
+}

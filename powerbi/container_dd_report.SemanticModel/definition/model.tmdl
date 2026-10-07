@@ -1,0 +1,22 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-PK
+	valueFilterBehavior: independent
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBI_QueryOrder = ["v_dd_exposure","v_date","v_dq_summary","v_quarantine_summary"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table v_dd_exposure
+ref table v_date
+ref table v_dq_summary
+ref table v_quarantine_summary
+
+ref cultureInfo en-US
+

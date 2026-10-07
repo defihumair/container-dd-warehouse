@@ -1,0 +1,4 @@
+relationship bfddce5d-2a90-48b8-b70b-8d5b6fee0489
+	fromColumn: v_dd_exposure.start_date
+	toColumn: v_date.full_date
+
