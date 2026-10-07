@@ -67,3 +67,11 @@ def test_error_level_quality_checks_pass(cur):
         "AND severity = N'error' AND status = N'fail'"
     ).fetchall()
     assert [r.check_name for r in failed] == []
+
+
+def test_mart_views_match_warehouse(cur):
+    assert scalar(cur, "SELECT COUNT(*) FROM mart.v_dd_exposure") == \
+        scalar(cur, "SELECT COUNT(*) FROM dw.fact_dd_charge")
+    assert scalar(cur, "SELECT SUM(charge_usd) FROM mart.v_dd_exposure") == \
+        scalar(cur, "SELECT SUM(charge_usd) FROM dw.fact_dd_charge")
+    assert scalar(cur, "SELECT COUNT(*) FROM mart.v_dq_summary WHERE severity = N'error' AND status = N'fail'") == 0

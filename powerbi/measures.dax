@@ -1,0 +1,32 @@
+Total D&D USD = SUM ( v_dd_exposure[charge_usd] )
+
+Demurrage USD = CALCULATE ( [Total D&D USD], v_dd_exposure[charge_type] = "DEMURRAGE" )
+
+Detention USD = CALCULATE ( [Total D&D USD], v_dd_exposure[charge_type] = "DETENTION" )
+
+Open Exposure USD = CALCULATE ( [Total D&D USD], v_dd_exposure[is_open] = 1 )
+
+Charge Cycles = COUNTROWS ( v_dd_exposure )
+
+Cycles Over Free Time = CALCULATE ( [Charge Cycles], v_dd_exposure[over_free_time] = 1 )
+
+% Over Free Time = DIVIDE ( [Cycles Over Free Time], [Charge Cycles] )
+
+Avg Detention Days (Closed) =
+CALCULATE (
+    AVERAGE ( v_dd_exposure[charge_days] ),
+    v_dd_exposure[charge_type] = "DETENTION",
+    v_dd_exposure[is_open] = 0
+)
+
+Previous Month USD = CALCULATE ( [Total D&D USD], DATEADD ( v_date[full_date], -1, MONTH ) )
+
+MoM Change % = DIVIDE ( [Total D&D USD] - [Previous Month USD], [Previous Month USD] )
+
+Error Checks Failed =
+COALESCE ( CALCULATE ( COUNTROWS ( v_dq_summary ), v_dq_summary[severity] = "error", v_dq_summary[status] = "fail" ), 0 )
+
+Warning Checks Failed =
+COALESCE ( CALCULATE ( COUNTROWS ( v_dq_summary ), v_dq_summary[severity] = "warning", v_dq_summary[status] = "fail" ), 0 )
+
+Quarantined Cycles = SUM ( v_quarantine_summary[cycles] )

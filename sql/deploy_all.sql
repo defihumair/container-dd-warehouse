@@ -17,3 +17,4 @@ GO
 :r /repo/sql/05_dq_checks/01_dq_objects.sql
 :r /repo/sql/04_procedures/dq_run_checks.sql
 :r /repo/sql/04_procedures/etl_run_transform.sql
+:r /repo/sql/03_dw/05_mart_views.sql
